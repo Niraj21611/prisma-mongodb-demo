@@ -1,4 +1,4 @@
-# Prisma MongoDB Demo App with Accelerate
+# Prisma & MongoDB Demo App with Accelerate
 
 ⭐ Star this repo if you find it useful!
 
