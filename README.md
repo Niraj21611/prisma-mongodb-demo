@@ -8,11 +8,11 @@ This is a [Next.js](https://nextjs.org) project demonstrating how to build a ful
 
 To learn more about this project:
 
-📺 Watch the video tutorial:
+📺 Watch the video tutorial 📺
 [![Watch the video](https://img.youtube.com/vi/7t_cL2BQ5Ok/maxresdefault.jpg)](https://youtu.be/7t_cL2BQ5Ok)
 
-📖 Read the written tutorial:
-[TBD - Link to written tutorial]
+📖 Read the written tutorial 📖
+[Written tutorial](https://dev.to/mongodb/10x-your-development-speed-prisma-mongodb-nextjs-ultimate-stack-5g1o)
 
 ## Prerequisites
 
