@@ -17,6 +17,9 @@ interface UserListProps {
 }
 
 export default function UserList({ initialUsers }: UserListProps) {  
+
+  // console.log(initialUsers)
+
   return (
     <Card className="shadow-sm bg-white overflow-hidden border-0 pt-0">
       <CardHeader className="bg-blue-50 border-b px-6 py-5 rounded-none">

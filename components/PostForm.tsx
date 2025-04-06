@@ -55,9 +55,14 @@ export default function PostForm({ users }: PostFormProps) {
       toast.success("Post created successfully");
       router.refresh();
       
-    } catch (error: any) {
-      console.error('Error creating post:', error);
-      toast.error(error.message || "Failed to create post");
+    } catch (error) {
+      console.error("Error creating post:", error);
+    
+      if (error instanceof Error) {
+        toast.error(error.message || "Failed to create post");
+      } else {
+        toast.error("Failed to create post");
+      }
     } finally {
       setLoading(false);
     }

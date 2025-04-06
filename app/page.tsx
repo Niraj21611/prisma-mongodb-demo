@@ -6,7 +6,8 @@ import { getUsers, getPosts } from '@/app/actions';
 
 export default async function Home() {
   // Server-side data fetching using our server actions
-  const users = await getUsers();
+  const {sucess, users} = await getUsers();
+
   const posts = await getPosts(5); // Get 5 most recent posts
   
   return (

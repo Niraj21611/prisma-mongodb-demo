@@ -1,47 +1,50 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { createUser } from "@/app/actions";
 
 export default function UserForm() {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  
+
   const handleCreateUser = async () => {
     if (!email) {
       toast.error("Email is required");
       return;
     }
-    
+
     setLoading(true);
     try {
-      await createUser({ email, name });
-      
+      const { success } = await createUser({ email, name });
+
+      console.log(success);
+
       // Reset form
-      setEmail('');
-      setName('');
-      
-      toast.success("User created successfully");
-      
+      setEmail("");
+      setName("");
+
+      if (success) {
+        router.refresh();
+        toast.success("User created successfully");
+      }
+
       // Refresh the page data to show the new user
-      router.refresh();
-      
     } catch (error) {
-      console.error('Error creating user:', error);
+      console.error("Error creating user:", error);
       toast.error((error as Error).message || "Failed to create user");
     } finally {
       setLoading(false);
     }
   };
-  
+
   return (
     <Card className="shadow-sm bg-white overflow-hidden border-0 pt-0 self-start">
       <CardHeader className="bg-blue-50 border-b px-6 py-5 rounded-none">
@@ -50,14 +53,17 @@ export default function UserForm() {
       <CardContent className="p-6">
         <div className="space-y-6">
           <div>
-            <Label htmlFor="email" className="text-sm font-medium text-gray-700 mb-1.5 block">
+            <Label
+              htmlFor="email"
+              className="text-sm font-medium text-gray-700 mb-1.5 block"
+            >
               Email <span className="text-red-500">*</span>
             </Label>
-            <Input 
+            <Input
               id="email"
-              placeholder="user@example.com" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
+              placeholder="user@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               required
               className="h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
@@ -65,24 +71,27 @@ export default function UserForm() {
           </div>
 
           <div>
-            <Label htmlFor="name" className="text-sm font-medium text-gray-700 mb-1.5 block">
+            <Label
+              htmlFor="name"
+              className="text-sm font-medium text-gray-700 mb-1.5 block"
+            >
               Name
             </Label>
-            <Input 
+            <Input
               id="name"
-              placeholder="John Doe" 
-              value={name} 
-              onChange={(e) => setName(e.target.value)} 
+              placeholder="John Doe"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
             />
           </div>
-          
-          <Button 
-            onClick={handleCreateUser} 
+
+          <Button
+            onClick={handleCreateUser}
             disabled={loading}
             className="w-full h-11 mt-2 bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200"
           >
-            {loading ? 'Creating...' : 'Create User'}
+            {loading ? "Creating..." : "Create User"}
           </Button>
         </div>
       </CardContent>
