@@ -4,16 +4,6 @@
 
 This is a [Next.js](https://nextjs.org) project demonstrating how to build a full-stack application using Prisma, MongoDB Atlas, and Prisma Accelerate. The application allows you to manage users and their posts. It also includes caching and connection pooling with Prisma Accelerate. 
 
-## Learn More
-
-To learn more about this project:
-
-📺 Watch the video tutorial 📺
-[![Watch the video](https://img.youtube.com/vi/7t_cL2BQ5Ok/maxresdefault.jpg)](https://youtu.be/7t_cL2BQ5Ok)
-
-📖 Read the written tutorial 📖
-[Written tutorial](https://dev.to/mongodb/10x-your-development-speed-prisma-mongodb-nextjs-ultimate-stack-5g1o)
-
 ## Prerequisites
 
 Before running this application, you'll need to set up the following:
