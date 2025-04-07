@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { formatDistance } from "date-fns";
 import { createComment } from "@/app/actions";
 import type { Post, User, Comment } from "@prisma/client";
+import { Trash2 } from "lucide-react";
 
 type PostWithRelations = Post & {
   author: User;
@@ -103,7 +104,7 @@ export default function PostList({ initialPosts }: PostListProps) {
                 className="border-0 shadow-sm overflow-hidden bg-white pt-0 pb-0"
               >
                 <CardHeader className="pb-3 bg-gray-50 border-b px-5 py-4 rounded-none">
-                  <div className="flex justify-between items-start">
+                  <div className="flex justify-between items-center">
                     <CardTitle className="text-xl font-bold text-gray-800">
                       {post.title}
                     </CardTitle>
@@ -112,6 +113,7 @@ export default function PostList({ initialPosts }: PostListProps) {
                         Draft
                       </span>
                     )}
+                    <Trash2 size={20}/>
                   </div>
                   <div className="text-xs text-gray-500 mt-2">
                     By{" "}

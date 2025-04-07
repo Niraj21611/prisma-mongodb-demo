@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/lib/prisma";
+import { error } from "console";
 import { revalidatePath } from "next/cache";
 
 // READ actions
@@ -22,9 +23,9 @@ export async function getUsers() {
       // },
     });
 
-    console.log(users)
+    console.log(users);
 
-    return {sucess: true, users};
+    return { sucess: true, users };
   } catch (error) {
     console.error("Error fetching users:", error);
     throw new Error("Failed to fetch users");
@@ -126,7 +127,7 @@ export async function createUser({
     // Revalidate the home page to show the new user
     revalidatePath("/");
 
-    return {success: true, user};
+    return { success: true, user };
   } catch (error) {
     if (
       error &&
@@ -139,6 +140,31 @@ export async function createUser({
     }
 
     throw new Error("Failed to create user");
+  }
+}
+
+//Delete Actions
+export async function deleteuser(id: string) {
+  if (!id) {
+    throw new Error("Id is required to delete user");
+  }
+  try {
+    const user = await prisma.user.delete({
+      where: {
+        id,
+      },
+    });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    revalidatePath("/");
+
+    return {success: true, user};
+  } catch (error) {
+    console.log("Error deleting user: ", error);
+    throw error;
   }
 }
 
